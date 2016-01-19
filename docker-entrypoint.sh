@@ -26,16 +26,13 @@ do
     if [[ DB_CONNECTABLE -eq 0 ]]; then
       if [ $(mysql -N -s -uvimbadmin -p${DB_ENV_MYSQL_PASSWORD} -hdb -e \
         "select count(*) from information_schema.tables where \
-          table_schema='vimbadmin' and table_name='domain';") -eq 1 ]; then
-        exec "$@"
-      else
+          table_schema='vimbadmin' and table_name='domain';") -ne 1 ]; then
         echo "Creating DB and Superuser"
         HASH_PASS=`php -r "echo password_hash('${ADMIN_PASSWORD}', PASSWORD_DEFAULT);"`
         ./bin/doctrine2-cli.php orm:schema-tool:create
         mysql -u vimbadmin -p${DB_ENV_MYSQL_PASSWORD} -h db vimbadmin -e \
           "INSERT INTO admin (username, password, super, active, created, modified) VALUES ('${ADMIN_EMAIL}', '$HASH_PASS', 1, 1, NOW(), NOW())" && \
         echo "Vimbadmin setup completed successfully"
-        exec "$@"
       fi
     fi
     sleep 5
