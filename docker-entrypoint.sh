@@ -1,16 +1,15 @@
 #!/bin/bash -eux
 
-sed -i "s/PRIMARY_HOSTNAME/${HOSTNAME}/g"  /var/www/html/public/mail/config-v1.1.xml
-sed -i "s/PRIMARY_HOSTNAME/${HOSTNAME}/g"  /var/www/html/public/mail.mobileconfig.php
-sed -i "s/UUID2/$(cat /proc/sys/kernel/random/uuid)/g"  /var/www/html/public/mail.mobileconfig.php
-sed -i "s/UUID4/$(cat /proc/sys/kernel/random/uuid)/g"  /var/www/html/public/mail.mobileconfig.php
+sed -i "s/PRIMARY_HOSTNAME/${HOSTNAME}/g"  ${INSTALL_PATH}/public/mail/config-v1.1.xml
+sed -i "s/PRIMARY_HOSTNAME/${HOSTNAME}/g"  ${INSTALL_PATH}/public/mail.mobileconfig.php
+sed -i "s/UUID2/$(cat /proc/sys/kernel/random/uuid)/g"  ${INSTALL_PATH}/public/mail.mobileconfig.php
+sed -i "s/UUID4/$(cat /proc/sys/kernel/random/uuid)/g"  ${INSTALL_PATH}/public/mail.mobileconfig.php
 
 echo >&2 "Setting Permissions:"
-path='/var/www/html'
 htuser='www-data'
 
-chown -R root:${htuser} ${path}/
-chown -R ${htuser}:${htuser} ${path}/*
+chown -R root:${htuser} ${INSTALL_PATH}
+chown -R ${htuser}:${htuser} ${INSTALL_PATH}/*
 
 cp ${INSTALL_PATH}/public/.htaccess.dist ${INSTALL_PATH}/public/.htaccess
 
