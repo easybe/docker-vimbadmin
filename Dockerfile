@@ -15,7 +15,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/local/bin
 
-ENV INSTALL_PATH=/var/www/html \
+ENV INSTALL_PATH=/var/www/html/admin \
     VIMBADMIN_VERSION=3.0.12
 
 COPY patch /patch
