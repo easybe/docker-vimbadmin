@@ -18,6 +18,7 @@ RUN apt-get update \
 ENV INSTALL_PATH=/var/www/html/admin \
     VIMBADMIN_VERSION=3.0.12
 
+COPY composer-config.json /root/.composer/config.json
 COPY patch /patch
 
 RUN cd /tmp \
