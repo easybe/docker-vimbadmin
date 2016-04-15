@@ -23,7 +23,9 @@ sed -i "s/ADMIN_EMAIL/${ADMIN_EMAIL}/g" ${INSTALL_PATH}/application/configs/appl
 cat /salts >> ${INSTALL_PATH}/application/configs/application.ini
 
 for ((i=0;i<10;i++)); do
-    if $MYSQL_ROOT -e 'status' >/dev/null 2>&1; then
+    if $MYSQL -e 'status' >/dev/null 2>&1; then
+        exit 0
+    elif $MYSQL_ROOT -e 'status' >/dev/null 2>&1; then
         if [ $($MYSQL_ROOT -N -s -e "SELECT COUNT(*) FROM information_schema.tables WHERE \
           table_schema='vimbadmin' AND table_name='domain';") -ne 1 ]; then
             echo "Creating DB and Superuser"
