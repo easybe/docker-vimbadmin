@@ -46,11 +46,11 @@ header('Content-Disposition: attachment; filename="mail.mobileconfig"');
                 <key>OutgoingPasswordSameAsIncomingPassword</key>
                 <true/>
                 <key>PayloadDescription</key>
-                <string>PRIMARY_HOSTNAME (IndieHosters)</string>
+                <string>PRIMARY_HOSTNAME (Synergy Village)</string>
                 <key>PayloadDisplayName</key>
                 <string>PRIMARY_HOSTNAME mail</string>
                 <key>PayloadIdentifier</key>
-                <string>email.mailinabox.mobileconfig.PRIMARY_HOSTNAME.E-Mail</string>
+                <string>email.synergy.mobileconfig.PRIMARY_HOSTNAME.E-Mail</string>
                 <key>PayloadOrganization</key>
                 <string></string>
                 <key>PayloadType</key>
@@ -68,11 +68,11 @@ header('Content-Disposition: attachment; filename="mail.mobileconfig"');
             </dict>
         </array>
         <key>PayloadDescription</key>
-        <string>PRIMARY_HOSTNAME (IndieHosters)</string>
+        <string>PRIMARY_HOSTNAME (Synergy Village)</string>
         <key>PayloadDisplayName</key>
         <string>PRIMARY_HOSTNAME</string>
         <key>PayloadIdentifier</key>
-        <string>email.mailinabox.mobileconfig.PRIMARY_HOSTNAME</string>
+        <string>email.synergy.mobileconfig.PRIMARY_HOSTNAME</string>
         <key>PayloadOrganization</key>
         <string></string>
         <key>PayloadRemovalDisallowed</key>
