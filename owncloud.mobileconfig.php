@@ -66,6 +66,62 @@ header('Content-Disposition: attachment; filename="mail.mobileconfig"');
                 <key>SMIMEEnabled</key>
                 <false/>
             </dict>
+            <dict>
+			    <key>CalDAVAccountDescription</key>
+			    <string>ezra@synergy-village.org</string>
+			    <key>CalDAVHostName</key>
+			    <string>sogo.synergy-village.org</string>
+			    <key>CalDAVPort</key>
+			    <real>443</real>
+			    <key>CalDAVPrincipalURL</key>
+			    <string>/SOGo/dav/ezra/</string>
+			    <key>CalDAVUseSSL</key>
+			    <true/>
+			    <key>CalDAVUsername</key>
+			    <string>ezra</string>
+			    <key>PayloadDescription</key>
+			    <string>ezra@synergy-village.org calendar</string>
+			    <key>PayloadDisplayName</key>
+			    <string>ezra@synergy-village.org calendar</string>
+			    <key>PayloadIdentifier</key>
+			    <string>ch.netfuture.sogo.profile.caldav.org.synergy-village.ezra</string>
+			    <key>PayloadOrganization</key>
+			    <string>synergy-village.org</string>
+			    <key>PayloadType</key>
+			    <string>com.apple.caldav.account</string>
+			    <key>PayloadUUID</key>
+			    <string>8A8D7997-FBA0-4FDC-88E6-4643159E57D5</string>
+			    <key>PayloadVersion</key>
+			    <integer>1</integer>
+		    </dict>
+		    <dict>
+			    <key>CardDAVAccountDescription</key>
+			    <string>ezra@synergy-village.org</string>
+			    <key>CardDAVHostName</key>
+			    <string>sogo.synergy-village.org</string>
+			    <key>CardDAVPort</key>
+			    <integer>443</integer>
+			    <key>CardDAVPrincipalURL</key>
+			    <string>/SOGo/dav/ezra/</string>
+			    <key>CardDAVUseSSL</key>
+			    <true/>
+			    <key>CardDAVUsername</key>
+			    <string>ezra</string>
+			    <key>PayloadDescription</key>
+			    <string>ezra@synergy-village.org contacts</string>
+			    <key>PayloadDisplayName</key>
+			    <string>ezra@synergy-village.org contacts</string>
+			    <key>PayloadIdentifier</key>
+			    <string>ch.netfuture.sogo.profile.carddav.org.synergy-village.ezra</string>
+			    <key>PayloadOrganization</key>
+			    <string>synergy-village.org</string>
+			    <key>PayloadType</key>
+			    <string>com.apple.carddav.account</string>
+			    <key>PayloadUUID</key>
+			    <string>F42A5611-6F85-4CA4-9CDD-A89F5E6EE499</string>
+			    <key>PayloadVersion</key>
+			    <integer>1</integer>
+		    </dict>
         </array>
         <key>PayloadDescription</key>
         <string>PRIMARY_HOSTNAME (Synergy Village)</string>
