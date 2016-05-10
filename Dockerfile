@@ -33,7 +33,7 @@ RUN cd /tmp \
     && patch $INSTALL_PATH/application/views/mailbox/email/settings.phtml < /patch \
     && rm /patch
 
-COPY mail.mobileconfig.php $INSTALL_PATH/public/mail.mobileconfig.php
+COPY owncloud.mobileconfig.php $INSTALL_PATH/public/owncloud.mobileconfig.php
 COPY mozilla-autoconfig.xml $INSTALL_PATH/public/mail/config-v1.1.xml
 COPY application.ini $INSTALL_PATH/application/configs/application.ini
 COPY docker-entrypoint.sh /entrypoint.sh

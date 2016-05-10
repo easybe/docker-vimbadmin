@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/x-apple-aspen-config');
-header('Content-Disposition: attachment; filename="mail.mobileconfig"');
+header('Content-Disposition: attachment; filename="owncloud.mobileconfig"');
 ?>
 
 <?xml version="1.0" encoding="UTF-8"?>
