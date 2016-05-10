@@ -1,8 +1,23 @@
 <?php
 header('Content-Type: application/x-apple-aspen-config');
 header('Content-Disposition: attachment; filename="owncloud.mobileconfig"');
-?>
 
+function domain() {
+    $parts = explode('@', $_GET['email']);
+    return $parts[1];
+}
+
+function user() {
+    $parts = explode('@', $_GET['email']);
+    return $parts[0];
+}
+
+function identifier() {
+    $parts = explode('.', domain());
+    return $parts[1] . '.' . $parts[0] . '.' . user();
+}
+
+?>
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
@@ -18,19 +33,19 @@ header('Content-Disposition: attachment; filename="owncloud.mobileconfig"');
         <array>
             <dict>
                 <key>EmailAddress</key>
-                <string><?php echo $_GET['email'];?></string>
+                <string><?= $_GET['email']; ?></string>
                 <key>IncomingMailServerUsername</key>
-                <string><?php echo $_GET['email'];?></string>
+                <string><?= $_GET['email']; ?></string>
                 <key>OutgoingMailServerUsername</key>
-                <string><?php echo $_GET['email'];?></string>
+                <string><?= $_GET['email']; ?></string>
                 <key>EmailAccountDescription</key>
-                <string>PRIMARY_HOSTNAME mail</string>
+                <string><?= $_GET['email']; ?></string>
                 <key>EmailAccountType</key>
                 <string>EmailTypeIMAP</string>
                 <key>IncomingMailServerAuthentication</key>
                 <string>EmailAuthPassword</string>
                 <key>IncomingMailServerHostName</key>
-                <string>PRIMARY_HOSTNAME</string>
+                <string>mail.<?= domain(); ?></string>
                 <key>IncomingMailServerPortNumber</key>
                 <integer>993</integer>
                 <key>IncomingMailServerUseSSL</key>
@@ -38,7 +53,7 @@ header('Content-Disposition: attachment; filename="owncloud.mobileconfig"');
                 <key>OutgoingMailServerAuthentication</key>
                 <string>EmailAuthPassword</string>
                 <key>OutgoingMailServerHostName</key>
-                <string>PRIMARY_HOSTNAME</string>
+                <string>mail.<?= domain(); ?></string>
                 <key>OutgoingMailServerPortNumber</key>
                 <integer>587</integer>
                 <key>OutgoingMailServerUseSSL</key>
@@ -46,17 +61,17 @@ header('Content-Disposition: attachment; filename="owncloud.mobileconfig"');
                 <key>OutgoingPasswordSameAsIncomingPassword</key>
                 <true/>
                 <key>PayloadDescription</key>
-                <string>PRIMARY_HOSTNAME (IndieHosters)</string>
+                <string><?= $_GET['email']; ?></string>
                 <key>PayloadDisplayName</key>
-                <string>PRIMARY_HOSTNAME mail</string>
+                <string><?= $_GET['email']; ?></string>
                 <key>PayloadIdentifier</key>
-                <string>email.mailinabox.mobileconfig.PRIMARY_HOSTNAME.E-Mail</string>
+                <string><?= identifier(); ?>.email</string>
                 <key>PayloadOrganization</key>
-                <string></string>
+                <string><?= $_GET['doamin']; ?></string>
                 <key>PayloadType</key>
                 <string>com.apple.mail.managed</string>
                 <key>PayloadUUID</key>
-                <string>UUID2</string>
+                <string><?= uniqid(); ?></string>
                 <key>PayloadVersion</key>
                 <integer>1</integer>
                 <key>PreventAppSheet</key>
@@ -66,13 +81,69 @@ header('Content-Disposition: attachment; filename="owncloud.mobileconfig"');
                 <key>SMIMEEnabled</key>
                 <false/>
             </dict>
+            <dict>
+                <key>CalDAVAccountDescription</key>
+                <string><?= $_GET['email']; ?></string>
+                <key>CalDAVHostName</key>
+                <string>cloud.<?= domain(); ?></string>
+                <key>CalDAVPort</key>
+                <real>443</real>
+                <key>CalDAVPrincipalURL</key>
+                <string>/remote.php/dav/calendars/<?= $_GET['email']; ?>/default/</string>
+                <key>CalDAVUseSSL</key>
+                <true/>
+                <key>CalDAVUsername</key>
+                <string><?= $_GET['email']; ?></string>
+                <key>PayloadDescription</key>
+                <string><?= $_GET['email']; ?> calendar</string>
+                <key>PayloadDisplayName</key>
+                <string><?= $_GET['email']; ?> calendar</string>
+                <key>PayloadIdentifier</key>
+                <string><?= identifier(); ?>.calendar</string>
+                <key>PayloadOrganization</key>
+                <string><?= domain(); ?></string>
+                <key>PayloadType</key>
+                <string>com.apple.caldav.account</string>
+                <key>PayloadUUID</key>
+                <string><?= uniqid(); ?></string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+            </dict>
+            <dict>
+                <key>CardDAVAccountDescription</key>
+                <string><?= $_GET['email']; ?></string>
+                <key>CardDAVHostName</key>
+                <string>cloud.<?= domain(); ?></string>
+                <key>CardDAVPort</key>
+                <integer>443</integer>
+                <key>CardDAVPrincipalURL</key>
+                <string>/remote.php/dav/addressbooks/users/<?= $_GET['email']; ?>/default/</string>
+                <key>CardDAVUseSSL</key>
+                <true/>
+                <key>CardDAVUsername</key>
+                <string><?= $_GET['email']; ?></string>
+                <key>PayloadDescription</key>
+                <string><?= $_GET['email']; ?> contacts</string>
+                <key>PayloadDisplayName</key>
+                <string><?= $_GET['email']; ?> contacts</string>
+                <key>PayloadIdentifier</key>
+                <string><?= identifier(); ?>.contacts</string>
+                <key>PayloadOrganization</key>
+                <string><?= domain(); ?></string>
+                <key>PayloadType</key>
+                <string>com.apple.carddav.account</string>
+                <key>PayloadUUID</key>
+                <string><?= uniqid(); ?></string>
+                <key>PayloadVersion</key>
+                <integer>1</integer>
+            </dict>
         </array>
         <key>PayloadDescription</key>
-        <string>PRIMARY_HOSTNAME (IndieHosters)</string>
+        <string><?= $_GET['email']; ?> cloud</string>
         <key>PayloadDisplayName</key>
-        <string>PRIMARY_HOSTNAME</string>
+        <string><?= $_GET['email']; ?> cloud</string>
         <key>PayloadIdentifier</key>
-        <string>email.mailinabox.mobileconfig.PRIMARY_HOSTNAME</string>
+        <string><?= identifier(); ?>.owncloud</string>
         <key>PayloadOrganization</key>
         <string></string>
         <key>PayloadRemovalDisallowed</key>
@@ -80,7 +151,7 @@ header('Content-Disposition: attachment; filename="owncloud.mobileconfig"');
         <key>PayloadType</key>
         <string>Configuration</string>
         <key>PayloadUUID</key>
-        <string>UUID4</string>
+        <string><?= uniqid(); ?></string>
         <key>PayloadVersion</key>
         <integer>1</integer>
     </dict>

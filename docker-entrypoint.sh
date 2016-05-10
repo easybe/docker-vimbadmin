@@ -4,9 +4,6 @@ MYSQL_ROOT="mysql -u root -p${DB_ENV_MYSQL_ROOT_PASSWORD} -h db"
 MYSQL="mysql -u vimbadmin -p${DB_ENV_MYSQL_PASSWORD} -h db"
 
 sed -i "s/PRIMARY_HOSTNAME/${HOSTNAME}/g"  ${INSTALL_PATH}/public/mail/config-v1.1.xml
-sed -i "s/PRIMARY_HOSTNAME/${HOSTNAME}/g"  ${INSTALL_PATH}/public/owncloud.mobileconfig.php
-sed -i "s/UUID2/$(cat /proc/sys/kernel/random/uuid)/g"  ${INSTALL_PATH}/public/owncloud.mobileconfig.php
-sed -i "s/UUID4/$(cat /proc/sys/kernel/random/uuid)/g"  ${INSTALL_PATH}/public/owncloud.mobileconfig.php
 
 echo >&2 "Setting Permissions:"
 htuser='www-data'
