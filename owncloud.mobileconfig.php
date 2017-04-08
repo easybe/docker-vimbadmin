@@ -89,7 +89,7 @@ function identifier() {
                 <key>CalDAVPort</key>
                 <real>443</real>
                 <key>CalDAVPrincipalURL</key>
-                <string>/remote.php/dav/calendars/<?= $_GET['email']; ?>/default/</string>
+                <string>/remote.php/dav/principals/users/<?= $_GET['email']; ?>/default/</string>
                 <key>CalDAVUseSSL</key>
                 <true/>
                 <key>CalDAVUsername</key>
