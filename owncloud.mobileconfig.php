@@ -31,6 +31,7 @@ function identifier() {
     <dict>
         <key>PayloadContent</key>
         <array>
+<?php if (!isset($_GET['no_email'])) { ?>
             <dict>
                 <key>EmailAddress</key>
                 <string><?= $_GET['email']; ?></string>
@@ -81,6 +82,8 @@ function identifier() {
                 <key>SMIMEEnabled</key>
                 <false/>
             </dict>
+<?php } ?>
+<?php if (!isset($_GET['no_calendar'])) { ?>
             <dict>
                 <key>CalDAVAccountDescription</key>
                 <string><?= $_GET['email']; ?></string>
@@ -109,6 +112,8 @@ function identifier() {
                 <key>PayloadVersion</key>
                 <integer>1</integer>
             </dict>
+<?php } ?>
+<?php if (!isset($_GET['no_address_book'])) { ?>
             <dict>
                 <key>CardDAVAccountDescription</key>
                 <string><?= $_GET['email']; ?></string>
@@ -137,6 +142,7 @@ function identifier() {
                 <key>PayloadVersion</key>
                 <integer>1</integer>
             </dict>
+<?php } ?>
         </array>
         <key>PayloadDescription</key>
         <string><?= $_GET['email']; ?> cloud</string>
