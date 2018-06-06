@@ -17,6 +17,14 @@ function identifier() {
     return $parts[1] . '.' . $parts[0] . '.' . user();
 }
 
+function organization() {
+    $org = domain();
+    if (isset($_GET['organization'])) {
+        $org = $_GET['organization'];
+    }
+    return $org;
+}
+
 ?>
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -68,7 +76,7 @@ function identifier() {
                 <key>PayloadIdentifier</key>
                 <string><?= identifier(); ?>.email</string>
                 <key>PayloadOrganization</key>
-                <string><?= $_GET['doamin']; ?></string>
+                <string><?= organization(); ?></string>
                 <key>PayloadType</key>
                 <string>com.apple.mail.managed</string>
                 <key>PayloadUUID</key>
@@ -104,7 +112,7 @@ function identifier() {
                 <key>PayloadIdentifier</key>
                 <string><?= identifier(); ?>.calendar</string>
                 <key>PayloadOrganization</key>
-                <string><?= domain(); ?></string>
+                <string><?= organization(); ?></string>
                 <key>PayloadType</key>
                 <string>com.apple.caldav.account</string>
                 <key>PayloadUUID</key>
@@ -134,7 +142,7 @@ function identifier() {
                 <key>PayloadIdentifier</key>
                 <string><?= identifier(); ?>.contacts</string>
                 <key>PayloadOrganization</key>
-                <string><?= domain(); ?></string>
+                <string><?= organization(); ?></string>
                 <key>PayloadType</key>
                 <string>com.apple.carddav.account</string>
                 <key>PayloadUUID</key>
@@ -151,7 +159,7 @@ function identifier() {
         <key>PayloadIdentifier</key>
         <string><?= identifier(); ?>.owncloud</string>
         <key>PayloadOrganization</key>
-        <string></string>
+        <string><?= organization(); ?></string>
         <key>PayloadRemovalDisallowed</key>
         <false/>
         <key>PayloadType</key>
